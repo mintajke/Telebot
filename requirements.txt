@@ -1,0 +1,5 @@
+setuptools==65.3.0
+requests~=2.28.1
+beautifulsoup4~=4.11.1
+lxml
+pyTelegramBotAPI==4.7.0
