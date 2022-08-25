@@ -15,7 +15,6 @@ def start(message):
 
 @bot.message_handler(commands=['help'])
 def help(message):
-
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
     start = telebot.types.KeyboardButton('/start')
     help = telebot.types.KeyboardButton('/help')
@@ -27,21 +26,21 @@ def help(message):
     bot.send_message(message.chat.id, mess, reply_markup=markup)
 
 
-#@bot.message_handler(content_types=['photo'])
-#def get_user_photo(message):
+# @bot.message_handler(content_types=['photo'])
+# def get_user_photo(message):
 #    bot.send_message(message.chat.id, 'Nice one')
 
 
 @bot.message_handler(commands=['website'])
 def website(message):
-   markup = telebot.types.InlineKeyboardMarkup()
-   markup.add(telebot.types.InlineKeyboardButton("memopedia.ru", url="https://memepedia.ru"))
-   bot.send_message(message.chat.id, 'Мемы честно взяты отсюда:', reply_markup=markup)
+    markup = telebot.types.InlineKeyboardMarkup()
+    markup.add(telebot.types.InlineKeyboardButton("memopedia.ru", url="https://memepedia.ru"))
+    bot.send_message(message.chat.id, 'Мемы честно взяты отсюда:', reply_markup=markup)
 
 
 @bot.message_handler(commands=['rand'])
 def rand(message):
-    "Тут будет выдача рандомного мема"
+    """Тут будет выдача рандомного мема"""
     message_words = message.text.split()
     if len(message_words) > 1:
         year = int(message_words[-1])
@@ -63,7 +62,7 @@ def rand(message):
 
 
 def random_from_year(year):
-    "Тут бyдeт выдача рандомного мема заданного года"
+    """Тут бyдeт выдача рандомного мема заданного года"""
 
     with open(f"mem_urls/mems_info") as f:
         for line in f:
@@ -71,7 +70,7 @@ def random_from_year(year):
             if int(cur_line[0]) == year:
                 num_mem = int(cur_line[1])
                 break
-    rnd_int = random.randint(0, num_mem-1)
+    rnd_int = random.randint(0, num_mem - 1)
     with open(f"mem_urls/{year}") as f:
         for index, line in enumerate(f):
             if index == rnd_int:
@@ -79,7 +78,7 @@ def random_from_year(year):
                 break
 
     return parsing.parse(cur_line[-1])
-    #return parsing.parse('https://memepedia.ru/slishkom-navyazchivaya-devushka-overly-attached-girlfriend/')
+    # return parsing.parse('https://memepedia.ru/slishkom-navyazchivaya-devushka-overly-attached-girlfriend/')
 
 
 @bot.message_handler(content_types=['text'])
