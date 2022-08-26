@@ -41,7 +41,7 @@ def urls_by_year(year):
 
 
 def parse(url):
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     soup = BeautifulSoup(response.text, "lxml")
 
     name = soup.find("h1", class_="entry-title s-post-title bb-mb-el").text
